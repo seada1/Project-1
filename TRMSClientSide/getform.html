@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Form Viewer</title>
+</head>
+
+<body>
+
+    <h1>My Form Viewer</h1>
+
+    <label for="idInput">Form ID:</label>
+    <input type="number" id="idInput">
+    <button onclick="getForm()">Get Form</button>
+
+</body>
+<script>
+
+    async function getForm() {
+
+        const id = document.getElementById("idInput").value
+        const url = `http://localhost:5000/forms/${id}`
+
+        const httpResponse = await fetch(url)
+        const body = await httpResponse.json()
+
+        console.log(body)
+
+    }
+
+</script>
+
+</html>

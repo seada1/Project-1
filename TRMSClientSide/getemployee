@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Employee info</title>
+</head>
+
+<body>
+
+    <h1>Employees</h1>
+
+    <label for="idInput">Employee ID:</label>
+    <input type="number" id="idInput">
+    <button onclick="getEmployee()">Get Employee</button>
+
+</body>
+<script>
+
+    async function getEmployee() {
+
+        const id = document.getElementById("idInput").value
+        const url = `http://localhost:5000/employees/${id}`
+
+        const httpResponse = await fetch(url)
+        const body = await httpResponse.json()
+
+        console.log(body)
+
+    }
+
+</script>
+
+</html>

@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> Form </title>
+</head>
+
+<body>
+    <style>
+        body {
+         min-height: 100vh;
+         background: linear-gradient(to right top, #eae5ec, #cfbee9, #bb7fdf, #8635e2, #6512eb) ;
+         }
+     </style>
+    <header>
+        <h1> Form </h1>
+        <nav> 
+            <ul class = "nav">
+                <li> <a href="index.html">Home</a></li>
+                <li> <a href= "form.html">Form</a></li>
+                <li> <a href ="about.html">About</a></li>
+                <li> <a href="login.html">login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <table>
+       
+        <tr>
+            <td class="header"><label for="form_idInput">Form ID:</label></td>
+            <td><input type="number" id="form_idInput" /></td>
+        </tr>
+
+        <tr>
+            <td class="header"><label for="empl_idInput">Employee ID:</label></td>
+            <td><input type="number" id="empl_idInput" /></td>
+        </tr>
+
+        <tr>
+            <td class="header"><label for="locationInput">Location:</label></td>
+            <td><input type="text" id="locationInput" /></td>
+        </tr>
+    
+        <tr>
+            <td class="header"><label for="descriptionInput">Description:</label></td>
+            <td><input type="text" id="descriptionInput" /></td>
+        </tr>
+
+        <tr>
+            <td class="header"><label for="costInput">Cost:</label></td>
+            <td><input type="text" id="costInput" /></td>
+        </tr>
+    
+        <tr>
+            <td class="header"><label for="attachmentInput">Attachment:</label></td>
+            <td><input type="text" id="attachmentInput" /></td>
+        </tr>
+        
+        <tr>
+            <td class="header"><label for="event_idInput">Event ID:</label></td>
+            <td><input type="number" id="event_idInput" /></td>
+        </tr>
+    
+        <tr>
+            <td class="header"><label for="grade_idInput">Grade ID:</label></td>
+            <td><input type="number" id="grade_idInput" /></td>
+        </tr>
+    
+        <tr>
+            <td class="header"><label for="statusInput">Status:</label></td>
+            <td><input type="text" id="statusInput" /></td>
+        </tr>
+    
+        <tr>
+            <td class="header"><label for="award_amountInput">Award Amount:</label></td>
+            <td><input type="text" id="award_amountInput" /></td>
+        </tr>
+    
+    </table>
+    
+    <button onclick="createForm()"> Create Form</button>
+
+    <!-- <table style="border: 1px solid black; border-collapse: collapse;" id="myTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Movie Title</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody id="myTBody">
+
+        </tbody>
+    </table>
+
+    <button onclick="loadMovies()">Populate Movies</button> -->
+
+
+</body>
+<script>
+
+    // let age = document.getElementById("ageInput")
+    // age.onkeyup = () => {
+    //     // console.log(age.value)
+    //     if (age.value < 0 || age.value == "") {
+    //         age.value = 0
+    //     }
+    // }
+
+
+    let createForm = function () {
+
+        let form_idVal = document.getElementById("form_idInput").value
+        let empl_idVal = document.getElementById("empl_idInput").value
+        let locationVal = document.getElementById("locationInput").value
+        let descriptionVal = document.getElementById("descriptionInput").value
+        let costVal = document.getElementById("costInput").value
+        let attachmentVal = document.getElementById("attachmentInput").value
+        let event_idVal = document.getElementById("event_idInput").value
+        let grade_idVal = document.getElementById("grade_idInput").value
+        let statusVal = document.getElementById("statusInput").value
+        let award_amountVal = document.getElementById("award_amountInput").value
+
+
+
+        console.log(form_idVal)
+        console.log(empl_idVal)
+        console.log(locationVal)
+        console.log(descriptionVal)
+        console.log(attachmentVal)
+        console.log(event_idVal)
+        console.log(grade_idVal)
+        console.log(statusVal)
+        console.log(award_amountVal)
+
+
+        // function User(username, password, email, age) {
+        //     this.username = username;
+        //     this.password = password;
+        //     this.email = email;
+        //     this.age = age;
+        // }
+
+       // let staff = new Staff(form_idVal, empl_idVal,locationVal, descriptionVal, attachmentVal,event_idVal,grade_idVal,statusVal, award_amount )
+
+        let staff = {
+            form_id: form_idVal,
+            empl_id: empl_idVal,
+            location: locationVal,
+            description: descriptionVal,
+            attachment: attachmentVal,
+            event_id: event_idVal,
+            grade_id: grade_idVal,
+            status: statusVal,
+            award_amount: award_amount
+        }
+
+        console.log(staff)
+
+        let staffJSON = JSON.stringify(staff)
+        console.log(staffJSON)
+
+        //Given this JSON, put it into a body of a Request, and send the Request.
+
+        //If we got a Response, then extract the Body of the Response
+        let pretendResponse = JSON.parse(staffJSON)
+
+        console.log(pretendResponse)
+
+        if (pretendResponse) {
+            alert("Create Form!")
+        }
+
+    }
+</script>
+
+// <script>
+
+    function createForm() {
+
+        //Pretend to have retrieved a Response with movie data. and we converted it back into JS Objects.
+        //JSON.parse(ourResponse)
+        let movies = [
+            { id: 1, title: "The Avengers", price: 10 },
+            { id: 2, title: "Iron Man", price: 9 },
+            { id: 3, title: "Black Panther", price: 11 }
+        ]
+
+        let tableElement = document.getElementById("myTBody")
+        tableElement.innerHTML = "";
+
+        movies.forEach(movie => {
+            //Create a new tr and put it into my tbody ("table")
+            let movieRow = document.createElement("tr")
+            tableElement.appendChild(movieRow)
+
+            for (prop in movie) {
+                let propData = document.createElement("td")
+                propData.innerHTML = movie[prop]
+                movieRow.appendChild(propData);
+            }
+
+        })
+
+    }
+
+</script>
+
+</html>
+
+
+
+
+
+
+
+<!--  
+    <label>Available:</label><br>
+    <label for="yes">Yes</label>
+    <input type="radio" id="yes" value="true" name="availability" checked><br>
+    <label for="no">No</label>
+    <input type="radio" id="no" value="false" name="availability"><br> --> -->
+
+    <!-- <button onclick="createForm()">Create Form</button>
+
+</body>
+<script>
+
+    async function createForm() {
+
+        console.log("Creeating Form....")
+
+        // const titleVal = document.getElementById("empl_idInput").value
+        // const priceVal = document.getElementById("statusInput").value
+
+        // let availableVal = false;
+
+        // const radios = document.getElementsByName("availability");
+        // radios.forEach(radio => {
+        //     if(radio.checked) {
+        //         availableVal = radio.value
+        //     }
+        // })
+
+        // availableVal = document.querySelector('input[name="availability"]:checked').value
+
+        // console.log(titleVal)
+        // console.log(priceVal)
+        // console.log(availableVal)
+
+        // const data = {
+        //     title: titleVal,
+        //     price: priceVal,
+        //     available: availableVal
+        }
+
+        const url = "http://localhost:5000/forms"
+
+        const httpResponse = await fetch(url, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        const body = await httpResponse.json();
+
+        console.log(body);
+        if (body) {
+            alert("Form Successfully Created!")
+        } else {
+            alert("Form Failed to be Created.")
+        }
+
+    
+
+</script>
+
+</html> -->
